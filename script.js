@@ -27,17 +27,24 @@ function displayBook() {
   for (let i = 0; i < library.length; i++) {
     const tr = document.createElement('tr')
     table.append(tr)
-    for (let prop in library[i]) {
+    const key = Object.keys(library[i])
+    key.forEach((key) => {
       const td = document.createElement('td')
-      td.innerText = library[i][prop]
+      td.innerText = library[i][key]
       tr.append(td)
-    }
+    })
     const td = document.createElement('td')
+    const td2 = document.createElement('td')
+    const btnRead = document.createElement('button')
+    btnRead.innerText = 'Change Status'
+    btnRead.setAttribute('data-index', i)
+    td.append(btnRead)
     const btnDelete = document.createElement('button')
     btnDelete.setAttribute('data-index', i)
     btnDelete.innerText = 'Delete'
-    td.append(btnDelete)
+    td2.append(btnDelete)
     tr.append(td)
+    tr.append(td2)
   }
 }
 
@@ -73,6 +80,11 @@ window.addEventListener('click', (e) => {
   if (e.target.dataset.index === undefined) {
     return
   }
+  if (e.target.innerText === 'Change Status') {
+    library[e.target.dataset.index].changeStatus()
+    displayBook()
+    return
+  }
   removeBook(e.target.dataset.index)
   console.log(e.target.dataset.index)
 })
@@ -80,4 +92,12 @@ window.addEventListener('click', (e) => {
 function removeBook(index) {
   library.splice(index, 1)
   displayBook()
+}
+
+Book.prototype.changeStatus = function() {
+  if (this.read === 'Read') {
+    this.read = 'Not read'
+  } else {
+    this.read = 'Read'
+  }
 }
