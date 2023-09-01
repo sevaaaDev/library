@@ -1,5 +1,14 @@
 const table = document.getElementById('table')
-
+const dialog = document.querySelector('dialog')
+const btnShowDialog = document.getElementById('show-dialog')
+const btnCloseDialog = document.getElementById('close-dialog')
+const btnDelete = document.querySelectorAll('[data-index]')
+const input = {
+  title: document.getElementById('title'),
+  author: document.getElementById('author'),
+  pages: document.getElementById('pages'),
+  read: document.getElementById('finished')
+}
 let library = []
 
 function Book(title, author, pages, read) {
@@ -7,19 +16,17 @@ function Book(title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
-}
+}  
 
 function addBookToTheList(title, author, pages, read) {
   const book = new Book(title, author, pages, read)
   library.push(book)
-}
-
-addBookToTheList('Sapiens', 'Yuval Noah Harari', 500, 'Read') 
+}  
 
 function resetDisplay() {
   while (table.firstChild) {
     table.removeChild(table.firstChild)
-  }
+  }  
 }
 
 function displayBook() {
@@ -32,7 +39,7 @@ function displayBook() {
       const td = document.createElement('td')
       td.innerText = library[i][key]
       tr.append(td)
-    })
+    })  
     const td = document.createElement('td')
     const td2 = document.createElement('td')
     const btnRead = document.createElement('button')
@@ -45,22 +52,8 @@ function displayBook() {
     td2.append(btnDelete)
     tr.append(td)
     tr.append(td2)
-  }
-}
-
-displayBook()
-
-const dialog = document.querySelector('dialog')
-const btnShowDialog = document.getElementById('show-dialog')
-const btnCloseDialog = document.getElementById('close-dialog')
-const btnDelete = document.querySelectorAll('[data-index]')
-const input = {
-  title: document.getElementById('title'),
-  author: document.getElementById('author'),
-  pages: document.getElementById('pages'),
-  read: document.getElementById('finished')
-}
-
+  }  
+}  
 
 btnShowDialog.addEventListener('click', () => {
   dialog.showModal()
@@ -101,3 +94,6 @@ Book.prototype.changeStatus = function() {
     this.read = 'Read'
   }
 }
+
+addBookToTheList('Sapiens', 'Yuval Noah Harari', 500, 'Read') 
+displayBook()
