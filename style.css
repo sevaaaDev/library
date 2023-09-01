@@ -11,6 +11,9 @@ h1 {
   margin: 1rem 0 ;
 }
 
+/* === main === */
+
+
 /* === table === */
 
 table, th, td {
@@ -18,4 +21,27 @@ table, th, td {
   border-collapse: collapse;
   padding: 0.5rem;
   margin: auto;
+}
+
+/* === btn === */
+
+button {
+  margin: 1rem auto;
+  display: block;
+}
+
+/* === dialog === */
+
+dialog[open] {
+  margin: auto;
+  padding: 1rem;
+}
+
+form label {
+  display: block;
+  margin: 0.3rem 0;
+}
+
+dialog::backdrop {
+  background-color: black;
 }
