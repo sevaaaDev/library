@@ -17,12 +17,13 @@
           <th>Author</th>
           <th>Pages</th>
           <th>Read status</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody id="table"></tbody>
     </table>
-    <button type="button">Submit Book</button>
-    <dialog open>
+    <button type="button" id="show-dialog">Submit Book</button>
+    <dialog>
       <form>
         <h2>Submit Book</h2>
         <label for="title">Title</label>
@@ -33,12 +34,14 @@
         <input type="number" name="pages" id="pages">
         <fieldset>
           <legend>Read status</legend>
-          <label for="read">Finished</label>
-          <input type="radio" name="read" id="read" value="finished">
-          <label for="read">Not finished</label>
-          <input type="radio" name="read" id="read" value="not-finished">
+          <label for="finished">
+            <input type="radio" name="read" id="finished" value="finished">Finished
+          </label>
+          <label for="not-finished">
+            <input type="radio" name="read" id="not-finished" value="not-finished" checked>Not finished
+          </label>
         </fieldset>
-        <button>Submit</button>
+        <button type="submit" id="close-dialog" formmethod="dialog">Submit</button>
       </form>
     </dialog>
   </main>
