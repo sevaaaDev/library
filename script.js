@@ -18,9 +18,8 @@ function Book(title, author, pages, read) {
   this.read = read
 }  
 
-function addBookToTheList(title, author, pages, read) {
-  const book = new Book(title, author, pages, read)
-  library.push(book)
+function addBookToTheList(title, author, pages, read) {  
+  library.push(new Book(title, author, pages, read))
 }  
 
 function resetDisplay() {
