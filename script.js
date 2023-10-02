@@ -104,12 +104,18 @@ const inputController = (() => {
   });
 
   display.btnCloseDialog.addEventListener("click", () => {
+    let read;
+    if (display.input.read.checked) {
+      read = "Read";
+    } else {
+      read = "Not Read";
+    }
     if (display.form.checkValidity()) {
       library.addBookToTheList(
         display.input.title.value,
         display.input.author.value,
         display.input.pages.value,
-        display.input.read.value,
+        read,
       );
       display.displayBook(library.getShelf());
     }
