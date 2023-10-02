@@ -19,7 +19,7 @@ const Library = () => {
   }
 
   function getShelf() {
-    return bookshelf
+    return bookshelf;
   }
 
   function removeBook(index) {
@@ -27,9 +27,9 @@ const Library = () => {
   }
 
   function changeStatus(index) {
-    bookshelf[index].changeStatus()
+    bookshelf[index].changeStatus();
   }
-  
+
   function addBookToTheList(title, author, pages, read) {
     bookshelf.push(new Book(title, author, pages, read));
   }
@@ -43,6 +43,7 @@ const displayController = () => {
   const btnShowDialog = document.getElementById("show-dialog");
   const btnCloseDialog = document.getElementById("close-dialog");
   const btnDelete = document.querySelectorAll("[data-index]");
+  const form = document.querySelector("form");
   const input = {
     title: document.getElementById("title"),
     author: document.getElementById("author"),
@@ -90,6 +91,7 @@ const displayController = () => {
     btnDelete,
     input,
     displayBook,
+    form,
   };
 };
 
@@ -102,20 +104,12 @@ const inputController = (() => {
   });
 
   display.btnCloseDialog.addEventListener("click", () => {
-    if (display.input.read.checked) {
+    if (display.form.checkValidity()) {
       library.addBookToTheList(
         display.input.title.value,
         display.input.author.value,
         display.input.pages.value,
-        "Read"
-      );
-      display.displayBook(library.getShelf());
-    } else {
-      library.addBookToTheList(
-        display.input.title.value,
-        display.input.author.value,
-        display.input.pages.value,
-        "Not read"
+        display.input.read.value,
       );
       display.displayBook(library.getShelf());
     }
@@ -131,7 +125,7 @@ const inputController = (() => {
       return;
     }
     library.removeBook(e.target.dataset.index);
-    display.displayBook(library.getShelf())
+    display.displayBook(library.getShelf());
     console.log(e.target.dataset.index);
   });
-})()
+})();
